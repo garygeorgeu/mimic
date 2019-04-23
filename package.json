@@ -1,0 +1,27 @@
+{
+  "name": "mimic",
+  "description": "Converts an image to an illusion of a moving image.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": false,
+  "homepage": "http://GaryGeorgeu.github.io/mimic",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build",
+  "scripts": {
+    "clean": "rm dist/bundle.js",
+    "start": "parcel src/index.html",
+    "build-prod": "parcel build src/index.html",
+    "predeploy": "npm run build-prod",
+    "deploy": "gh-pages -d build"
+  },
+  "dependencies": {
+    "gif-frames": "^1.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-0",
+    "@babel/preset-env": "^7.4.2",
+    "parcel-bundler": "^1.12.3",
+    "gh-pages": "^2.0.1"
+  }
+}
