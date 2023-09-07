@@ -1,27 +1,27 @@
 import gifFrames from 'gif-frames'
 
-export default function mimic({url, columnWidth, overlayScale = 1.5}) {
-	return gifFrames({ url, frames: 'all', outputType: 'canvas' })
+export default function mimic({ url, columnWidth, overlayScale = 1.5 }) {
+  return gifFrames({ url, frames: 'all', outputType: 'canvas' })
     .then(frames => createIllusion(frames, columnWidth))
 
   function createIllusion(frames, columnWidth = 2) {
     const canvas = document.createElement('canvas')
     const context = canvas.getContext('2d')
-		const { width, height, delay } = frames[0].frameInfo
-		const columnDelay = (delay || 1) / columnWidth
-		const animationDuration = columnDelay * frames.length * overlayScale
+    const { width, height, delay } = frames[0].frameInfo
+    const columnDelay = (delay || 1) / columnWidth
+    const animationDuration = columnDelay * frames.length * overlayScale
     canvas.width = width
     canvas.height = height
     frames.forEach(drawFrameDataToCanvas)
 
     return {
-			numberOfColumns: frames.length,
-			columnWidth,
-			columnDelay,
-			animationDuration,
+      numberOfColumns: frames.length,
+      columnWidth,
+      columnDelay,
+      animationDuration,
       overlay: createOverlay(),
-    	canvas,
-  	}
+      canvas,
+    }
 
     function drawFrameDataToCanvas({frameIndex, frameInfo, getImage}) {
       const imageCanvas = getImage()
